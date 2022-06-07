@@ -4,7 +4,7 @@ import ApplicationTopver from './ApplicationTopver';
 
 const Application = () => {
     return (
-        <div>
+        <div className='bg-base-300'>
             <ApplicationTopver>
                 <Outlet></Outlet>
             </ApplicationTopver>
