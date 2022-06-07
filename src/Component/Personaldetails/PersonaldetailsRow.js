@@ -1,10 +1,16 @@
 import React from 'react';
 
-const PersonaldetailsRow = () => {
+const PersonaldetailsRow = ({info,index}) => {
+    const{FirstName,LastName,Age,Number,Address}=info
     return (
-        <div>
-            
-        </div>
+        <tr>
+            <th>{index+1}</th>
+            <td>{FirstName}</td>
+            <td>{LastName}</td>
+            <td>{Age}</td>
+            <td>{Number}</td>
+            <td>{Address}</td>
+        </tr>
     );
 };
 

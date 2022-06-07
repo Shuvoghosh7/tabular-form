@@ -1,16 +1,32 @@
 import React from 'react';
 import PersonaldetailsRow from './PersonaldetailsRow';
 import '../Style/Style.css'
+import { useQuery } from 'react-query';
 const Personaldetails = () => {
-
-    const addPersonalDetails=(e)=>{
+    const { data: Personalinfo, isLoading,refetch } = useQuery('Personalinfo', () => fetch('http://localhost:5000/get-personalDetails').then(res => res.json()))
+    
+    console.log(Personalinfo)
+    const addPersonalDetails = (e) => {
         e.preventDefault();
-        const FirstName=e.target.Fname.value
-        const LastName=e.target.Lname.value
-        const Age=e.target.age.value
-        const Number=e.target.number.value
-        const Address=e.target.address.value
-        console.log(FirstName,LastName,Age,Number,Address)
+        const FirstName = e.target.Fname.value
+        const LastName = e.target.Lname.value
+        const Age = e.target.age.value
+        const Number = e.target.number.value
+        const Address = e.target.address.value
+        console.log(FirstName, LastName, Age, Number, Address)
+        fetch("http://localhost:5000/add-personalDetails", {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({FirstName,LastName,Age,Number,Address})
+        })
+            .then(res => res.json())
+            .then(data => {
+                refetch()
+                console.log(data)
+                e.target.reset();
+            })
     }
     return (
         <div>
@@ -28,21 +44,15 @@ const Personaldetails = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {
-                            users.map(user => <PersonaldetailsRow
-                                key={user._id}
-                                user={user}
-                                refetch={refetch}
+                        {
+                            Personalinfo?.map((info,index )=> <PersonaldetailsRow
+                                key={info._id}
+                                info={info}
+                                index={index}
+                                
                             ></PersonaldetailsRow>)
-                        } */}
-                        <tr>
-                            <th>1</th>
-                            <td>Cy Ganderton</td>
-                            <td>Quality Control Specialist</td>
-                            <td>Blue</td>
-                            <td>Blue</td>
-                            <td>Blue</td>
-                        </tr>
+                        }
+                        
                     </tbody>
                 </table>
             </div>
@@ -51,12 +61,12 @@ const Personaldetails = () => {
                 <form onSubmit={addPersonalDetails}>
                     <div className='input-field'>
                         <input type="text" name="Fname" id="" placeholder='Write First Name' />
-                        <input  type="text" name="Lname" id="" placeholder='Write Last Name'/>
-                        <input  type="text" name="age" id="" placeholder='Write Age'/>
-                        <input  type="text" name="number" id="" placeholder='Write Number'/>
-                        <input  type="text" name="address" id="" placeholder='Write Address'/>
-                        
-                      <button className='submit-button'>Add Personal Details</button>
+                        <input type="text" name="Lname" id="" placeholder='Write Last Name' />
+                        <input type="text" name="age" id="" placeholder='Write Age' />
+                        <input type="text" name="number" id="" placeholder='Write Number' />
+                        <input type="text" name="address" id="" placeholder='Write Address' />
+
+                        <button className='submit-button'>Add Personal Details</button>
                     </div>
                 </form>
             </div>
