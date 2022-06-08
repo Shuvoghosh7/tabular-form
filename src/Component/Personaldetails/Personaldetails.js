@@ -4,7 +4,7 @@ import '../Style/Style.css'
 import { useQuery } from 'react-query';
 import { toast } from 'react-toastify';
 const Personaldetails = () => {
-    const { data: Personalinfo, isLoading,refetch } = useQuery('Personalinfo', () => fetch('http://localhost:5000/get-personalDetails').then(res => res.json()))
+    const { data: Personalinfo, isLoading, refetch } = useQuery('Personalinfo', () => fetch('https://gentle-earth-38780.herokuapp.com/get-personalDetails').then(res => res.json()))
     if (isLoading) {
         return (
             <div className='h-screen flex justify-center items-center'>
@@ -20,12 +20,12 @@ const Personaldetails = () => {
         const Number = e.target.number.value
         const Address = e.target.address.value
         console.log(FirstName, LastName, Age, Number, Address)
-        fetch("http://localhost:5000/add-personalDetails", {
+        fetch("https://gentle-earth-38780.herokuapp.com/add-personalDetails", {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({FirstName,LastName,Age,Number,Address})
+            body: JSON.stringify({ FirstName, LastName, Age, Number, Address })
         })
             .then(res => res.json())
             .then(data => {
@@ -54,19 +54,19 @@ const Personaldetails = () => {
                     </thead>
                     <tbody>
                         {
-                            Personalinfo?.map((info,index )=> <PersonaldetailsRow
+                            Personalinfo?.map((info, index) => <PersonaldetailsRow
                                 key={info._id}
                                 info={info}
                                 index={index}
                                 refetch={refetch}
-                                
+
                             ></PersonaldetailsRow>)
                         }
-                        
+
                     </tbody>
                 </table>
             </div>
-            <div>
+            <div className='mx-3'>
                 <h1 className='text-2xl font-bold'>Add Personal Details</h1>
                 <form onSubmit={addPersonalDetails}>
                     <div className='input-field'>

@@ -8,7 +8,7 @@ import BusinessdetailsRow from './BusinessdetailsRow';
 const Businessdetails = () => {
     const { register, reset, formState: { errors }, handleSubmit } = useForm();
 
-    const { data: businessdetails, isLoading,refetch } = useQuery('businessdetails', () => fetch('http://localhost:5000/get-Businessdetails').then(res => res.json()))
+    const { data: businessdetails, isLoading, refetch } = useQuery('businessdetails', () => fetch('https://gentle-earth-38780.herokuapp.com/get-Businessdetails').then(res => res.json()))
     if (isLoading) {
         return (
             <div className='h-screen flex justify-center items-center'>
@@ -19,7 +19,7 @@ const Businessdetails = () => {
 
     const onSubmit = data => {
         console.log(data)
-        fetch("http://localhost:5000/add-Businessdetails", {
+        fetch("https://gentle-earth-38780.herokuapp.com/add-Businessdetails", {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
@@ -32,7 +32,7 @@ const Businessdetails = () => {
                 refetch()
                 toast.success("Business Info add successfully")
                 console.log(data)
-                
+
             })
     };
     return (
@@ -54,20 +54,20 @@ const Businessdetails = () => {
                     </thead>
                     <tbody>
                         {
-                            businessdetails?.map((Binfo,index) =>
+                            businessdetails?.map((Binfo, index) =>
                                 <BusinessdetailsRow
-                                key={Binfo._id}
-                                Binfo={Binfo}
-                                index={index}
-                                refetch={refetch}
+                                    key={Binfo._id}
+                                    Binfo={Binfo}
+                                    index={index}
+                                    refetch={refetch}
                                 />
                             )
                         }
-                        
+
                     </tbody>
                 </table>
             </div>
-            <div >
+            <div className='mx-3'>
                 <p className='text-xl font-bold'>Add Business Details</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='input-field'>

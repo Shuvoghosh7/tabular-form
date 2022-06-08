@@ -2,13 +2,13 @@ import React from 'react';
 import { toast } from 'react-toastify';
 import { AiTwotoneDelete } from 'react-icons/ai';
 
-const BusinessdetailsRow = ({Binfo,index,refetch}) => {
-    const{_id,BusinessName,BusinessType,GST,Number,Address}=Binfo
-    
+const BusinessdetailsRow = ({ Binfo, index, refetch }) => {
+    const { _id, BusinessName, BusinessType, GST, Number, Address } = Binfo
+
     const handealDelete = () => {
         const proceed = window.confirm("Are You Confirm,Delete This Item?")
         if (proceed) {
-            const url = `http://localhost:5000/delete-Businessdetails/${_id}`
+            const url = `https://gentle-earth-38780.herokuapp.com/delete-Businessdetails/${_id}`
             fetch(url, {
                 method: 'DELETE'
 
@@ -24,7 +24,7 @@ const BusinessdetailsRow = ({Binfo,index,refetch}) => {
     }
     return (
         <tr>
-            <th>{index+1}</th>
+            <th>{index + 1}</th>
             <td>{BusinessName}</td>
             <td>{BusinessType}</td>
             <td>{GST}</td>

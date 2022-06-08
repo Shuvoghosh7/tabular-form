@@ -7,7 +7,7 @@ const PersonaldetailsRow = ({ info, index, refetch }) => {
     const handealDelete = () => {
         const proceed = window.confirm("Are You Confirm,Delete This Item?")
         if (proceed) {
-            const url = `http://localhost:5000/delete-personalDetails/${_id}`
+            const url = `https://gentle-earth-38780.herokuapp.com/delete-personalDetails/${_id}`
             fetch(url, {
                 method: 'DELETE'
 

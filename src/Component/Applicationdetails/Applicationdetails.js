@@ -7,8 +7,8 @@ import ApplicationdetailsRow from '../Personaldetails/ApplicationdetailsRow';
 const Applicationdetails = () => {
     const { register, reset, formState: { errors }, handleSubmit } = useForm();
 
-    const { data: LoanApplication, isLoading,refetch } = useQuery('LoanApplication', () => fetch('http://localhost:5000/get-LoanDetails').then(res => res.json()))
-    
+    const { data: LoanApplication, isLoading, refetch } = useQuery('LoanApplication', () => fetch('https://gentle-earth-38780.herokuapp.com/get-LoanDetails').then(res => res.json()))
+
     if (isLoading) {
         return (
             <div className='h-screen flex justify-center items-center'>
@@ -18,7 +18,7 @@ const Applicationdetails = () => {
     }
     const onSubmit = data => {
         console.log(data)
-        fetch("http://localhost:5000/add-LoanDetails", {
+        fetch("https://gentle-earth-38780.herokuapp.com/add-LoanDetails", {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
@@ -30,8 +30,8 @@ const Applicationdetails = () => {
                 reset()
                 refetch()
                 toast.success("Business Info add successfully")
-                
-                
+
+
             })
     }
     return (
@@ -51,13 +51,13 @@ const Applicationdetails = () => {
                         </tr>
                     </thead>
                     <tbody>
-                         {
-                            LoanApplication?.map((loan,index) =>
+                        {
+                            LoanApplication?.map((loan, index) =>
                                 <ApplicationdetailsRow
-                                key={loan._id}
-                                loan={loan}
-                                index={index}
-                                refetch={refetch}
+                                    key={loan._id}
+                                    loan={loan}
+                                    index={index}
+                                    refetch={refetch}
                                 />
                             )
                         }
@@ -65,7 +65,7 @@ const Applicationdetails = () => {
                     </tbody>
                 </table>
             </div>
-            <div >
+            <div className='mx-3'>
                 <p className='text-xl font-bold mt-5'>Add Loan Application details</p>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className='input-field'>
