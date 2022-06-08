@@ -1,4 +1,4 @@
-.input-field input{
+.input-field input,select{
     background: #ecf0f3;
     margin: 15px 5px 0 0;
     padding: 10px;
@@ -9,7 +9,7 @@
     box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px #656565;
 }
 .input-field input::placeholder {
-    color:#3a6073;
+    color:black;
 }
 .submit-button{
     color: white;

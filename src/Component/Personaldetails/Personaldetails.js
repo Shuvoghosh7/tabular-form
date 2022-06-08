@@ -2,9 +2,16 @@ import React from 'react';
 import PersonaldetailsRow from './PersonaldetailsRow';
 import '../Style/Style.css'
 import { useQuery } from 'react-query';
+import { toast } from 'react-toastify';
 const Personaldetails = () => {
     const { data: Personalinfo, isLoading,refetch } = useQuery('Personalinfo', () => fetch('http://localhost:5000/get-personalDetails').then(res => res.json()))
-    
+    if (isLoading) {
+        return (
+            <div className='h-screen flex justify-center items-center'>
+                <div className="w-16 h-16 border-b-2 border-gray-900 rounded-full animate-spin"></div>
+            </div>
+        );
+    }
     const addPersonalDetails = (e) => {
         e.preventDefault();
         const FirstName = e.target.Fname.value
@@ -25,10 +32,12 @@ const Personaldetails = () => {
                 refetch()
                 console.log(data)
                 e.target.reset();
+                toast.success("personal Details add successfully")
             })
     }
     return (
         <div>
+            <p className='text-center text-xl text-cyan-600 font-bold'>Personal Details information</p>
             <div class="overflow-x-auto">
                 <table class="table w-full">
                     <thead>
@@ -39,6 +48,7 @@ const Personaldetails = () => {
                             <th>Age</th>
                             <th>Mobile no</th>
                             <th>Address</th>
+                            <th>Action</th>
 
                         </tr>
                     </thead>
@@ -48,6 +58,7 @@ const Personaldetails = () => {
                                 key={info._id}
                                 info={info}
                                 index={index}
+                                refetch={refetch}
                                 
                             ></PersonaldetailsRow>)
                         }

@@ -37,6 +37,7 @@ const Businessdetails = () => {
     };
     return (
         <div>
+            <p className='text-center text-xl text-cyan-600 font-bold'>Business Details information</p>
             <div class="overflow-x-auto">
                 <table class="table w-full">
                     <thead>
@@ -47,6 +48,7 @@ const Businessdetails = () => {
                             <th>GST no</th>
                             <th>Mobile no</th>
                             <th>Address</th>
+                            <th>Action</th>
 
                         </tr>
                     </thead>
@@ -57,6 +59,7 @@ const Businessdetails = () => {
                                 key={Binfo._id}
                                 Binfo={Binfo}
                                 index={index}
+                                refetch={refetch}
                                 />
                             )
                         }
