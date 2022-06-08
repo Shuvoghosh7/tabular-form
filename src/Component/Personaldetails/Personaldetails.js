@@ -5,7 +5,6 @@ import { useQuery } from 'react-query';
 const Personaldetails = () => {
     const { data: Personalinfo, isLoading,refetch } = useQuery('Personalinfo', () => fetch('http://localhost:5000/get-personalDetails').then(res => res.json()))
     
-    console.log(Personalinfo)
     const addPersonalDetails = (e) => {
         e.preventDefault();
         const FirstName = e.target.Fname.value

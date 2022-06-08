@@ -6,6 +6,7 @@ const Application = () => {
     return (
         <div className='bg-base-300'>
             <ApplicationTopver>
+                <p className='text-center font-bold text-primary'>Wellcome loan application process. </p>
                 <Outlet></Outlet>
             </ApplicationTopver>
         </div>

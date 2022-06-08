@@ -5,7 +5,8 @@ import Application from './Component/Application/Application';
 import Personaldetails from './Component/Personaldetails/Personaldetails';
 import Businessdetails from './Component/Businessdetails/Businessdetails';
 import Applicationdetails from './Component/Applicationdetails/Applicationdetails';
-
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         </Route>
 
       </Routes>
+      <ToastContainer/>
     </div>
   );
 }
